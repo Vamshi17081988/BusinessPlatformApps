@@ -1,0 +1,19 @@
+﻿<template>
+    <h1 class="st-title">${title}</h1>
+    <p class="st-subtitle">${subtitle}</p>
+
+    <div class="st-float" if.bind="continuousExportsList && continuousExportsList.length > 0">
+        <p class="st-text">${MS.Translate.APP_INSIGHTS_CONTINUOUS_EXPORT}</p>
+        <select class="btn btn-default dropdown-toggle st-input" click.trigger="changeContinuousExport()" disabled.bind="MS.HttpService.isServiceBusy" value.bind="selectedContinuousExport">
+            <option repeat.for="item of continuousExportsList" value.bind="item.StorageName">${item.StorageName}</option>
+        </select>
+    </div>
+
+    <div class="st-float" if.bind="continuousExportsList && continuousExportsList.length == 0">
+        <p class="st-text">${MS.Translate.APP_INSIGHTS_CONTINUOUS_EXPORT_NOT_FOUND}</p>
+    </div>
+
+    <div class="st-float" if.bind="addingContinuousExport">
+        <p class="st-text">${MS.Translate.APP_INSIGHTS_CONTINUOUS_EXPORT_ADDING_NEW}</p>
+    </div>
+</template>

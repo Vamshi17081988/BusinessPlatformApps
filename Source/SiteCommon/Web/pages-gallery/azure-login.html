@@ -5,10 +5,12 @@
     <p class="st-subtitle">${MS.Translate.AZURE_LOGIN_SUBTITLE}</p>
 
     <div if.bind="isActivated && !isValidated && !showPricingConfirmation">
-        <p class="st-subtitle">${MS.Translate.AZURE_LOGIN_DONT_HAVE}</p>
-        <p class="st-text">
-            <bpst-link a-description="${MS.Translate.AZURE_LOGIN_GET_STARTED}" a-link="${MS.Translate.AZURE_LOGIN_LINK}" a-link-text="${MS.Translate.AZURE_LOGIN_LINK_DESCRIPTION}"></bpst-link>
-        </p>
+        <div if.bind="showNewSub">
+            <p class="st-subtitle">${MS.Translate.AZURE_LOGIN_DONT_HAVE}</p>
+            <p class="st-text">
+                <bpst-link a-description="${MS.Translate.AZURE_LOGIN_GET_STARTED}" a-link="${MS.Translate.AZURE_LOGIN_LINK}" a-link-text="${MS.Translate.AZURE_LOGIN_LINK_DESCRIPTION}"></bpst-link>
+            </p>
+        </div>
 
         <p class="st-subtitle">${MS.Translate.AZURE_LOGIN_HAVE}</p>
         <p class="st-text">${MS.Translate.AZURE_LOGIN_CONNECTION}</p>

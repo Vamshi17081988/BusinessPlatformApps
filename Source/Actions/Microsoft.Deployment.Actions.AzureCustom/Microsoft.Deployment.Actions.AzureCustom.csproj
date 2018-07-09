@@ -208,6 +208,10 @@
     <Compile Include="ApiManagement\CreateApiManagementLogger.cs" />
     <Compile Include="ApiManagement\GetApiManagementServices.cs" />
     <Compile Include="ApiManagement\UpdateApiManagementPolicy.cs" />
+    <Compile Include="AppInsights\AddContinuousExport.cs" />
+    <Compile Include="AppInsights\CreateADLAInstance.cs" />
+    <Compile Include="AppInsights\GetAppInsightsInstances.cs" />
+    <Compile Include="AppInsights\GetContinuousExports.cs" />
     <Compile Include="Arm\DeployAzureArmTemplate.cs" />
     <Compile Include="Arm\WaitForArmDeploymentStatus.cs" />
     <Compile Include="AzureAS\AssignPermissionsForUser.cs" />

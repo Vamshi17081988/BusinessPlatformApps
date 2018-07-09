@@ -96,7 +96,7 @@ namespace Microsoft.Deployment.Actions.AzureCustom.Arm
             return r;
         }
 
-        private static async Task<ActionResponse> WaitForAction(ResourceManagementClient client, string resourceGroup, string deploymentName)
+        public static async Task<ActionResponse> WaitForAction(ResourceManagementClient client, string resourceGroup, string deploymentName)
         {
             for (; ; )
             {

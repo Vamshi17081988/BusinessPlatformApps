@@ -1,0 +1,19 @@
+{
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "adlsName": {
+      "type": "string"
+    },
+    },
+    "location": "[parameters('location')]",
+    "properties": {
+      "defaultDataLakeStoreAccount": "[parameters('adlsName')]",
+      "dataLakeStoreAccounts": [
+        {
+          "name": "[parameters('adlsName')]"
+        }
+      ]
+    }
+  }

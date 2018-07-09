@@ -1,0 +1,11 @@
+﻿<template>
+    <h1 class="st-title">${title}</h1>
+    <p class="st-subtitle">${subtitle}</p>
+
+    <div class="st-float" if.bind="appInsightsList && appInsightsList.length > 0">
+        <p class="st-text">${MS.Translate.APP_INSIGHTS_INSTANCE}</p>
+        <select class="btn btn-default dropdown-toggle st-input" click.trigger="changeAppInsightsInstance()" disabled.bind="MS.HttpService.isServiceBusy" value.bind="selectedAppInsightsInstance">
+            <option repeat.for="item of appInsightsList" value.bind="item.name">${item.name}</option>
+        </select>
+    </div>
+</template>

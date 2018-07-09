@@ -47,7 +47,6 @@ namespace Microsoft.Deployment.Actions.AzureCustom.Common
             SubscriptionCloudCredentials creds = new TokenCloudCredentials(subscription, azureToken);
             Microsoft.Azure.Management.Resources.ResourceManagementClient client = new ResourceManagementClient(creds);
 
-
             var deployment = new Microsoft.Azure.Management.Resources.Models.Deployment()
             {
                 Properties = new DeploymentPropertiesExtended()

@@ -31,6 +31,7 @@ export class AzureLogin extends ViewModelBase {
     showPricingConfirmation: boolean = false;
     subscriptionsList: any[] = [];
     showLocations: boolean = false;
+    showNewSub: boolean = true;
     allowedLocations: string = ''; // Some services only existing in certain regions so added region/location filter
 
     async connect(): Promise<void> {
