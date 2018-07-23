@@ -211,6 +211,7 @@
     <Compile Include="ApiManagement\CreateApiManagementLogger.cs" />
     <Compile Include="ApiManagement\GetApiManagementServices.cs" />
     <Compile Include="ApiManagement\UpdateApiManagementPolicy.cs" />
+    <Compile Include="AppInsights\AddADLADataSource.cs" />
     <Compile Include="AppInsights\AddContinuousExport.cs" />
     <Compile Include="AppInsights\CreateADLAInstance.cs" />
     <Compile Include="AppInsights\GetAppInsightsInstances.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="AzureML\ExportAzureMLExperiment.cs" />
     <Compile Include="AzureML\DeployAzureMLWebServiceFromFile.cs" />
     <Compile Include="AzureSql\CreateAzureSql.cs" />
+    <Compile Include="AzureStorage\UploadFileToBlob.cs" />
     <Compile Include="AzureStorage\GetTextBlob.cs" />
     <Compile Include="AzureToken\AzureTokenRequestMeta.cs" />
     <Compile Include="AzureToken\AzureTokenUtility.cs" />
