@@ -59,6 +59,15 @@ export class SelectStorage extends ViewModelBase {
         if (!this.selectedSubscriptionName) {
             var subscriptionObject = this.MS.DataStore.getJson('SelectedSubscription');
             this.selectedSubscriptionName = subscriptionObject.DisplayName;
+            this.resetStorageAccount();
+        }
+        else {
+            var subscriptionObject = this.MS.DataStore.getJson('SelectedSubscription');
+            var subscriptionName = subscriptionObject.DisplayName;
+            if (subscriptionName !== this.selectedSubscriptionName) {
+                this.selectedSubscriptionName = subscriptionName;
+                this.resetStorageAccount();
+            }
         }
 
         if (this.storagesList.length === 0) {
@@ -68,6 +77,15 @@ export class SelectStorage extends ViewModelBase {
         if (this.selectedStorageName && this.selectedContainerName && this.selectedContainerName.length > 0) {
             this.isValidated = true;
         }
+    }
+
+    resetStorageAccount(): void {
+        this.storagesList = [];
+        this.containersList = [];
+        this.selectedStorageName = '';
+        this.selectedContainerName = '';
+
+        this.isValidated = false;
     }
 
     async onNavigatingNext(): Promise<boolean> {

@@ -13,7 +13,12 @@ namespace Microsoft.Deployment.Common.Helpers
     public class SqlUtility
     {
         private const int MAX_RETRIES = 10;
-        private const string writeableDatabaseQuery = "CREATE TABLE {0}(pbi INT); INSERT INTO {0}(pbi) VALUES(1); DROP TABLE {0};";
+        private const int REQUIRED_PERMISSION_COUNT = 11;
+        private const string databasePermissionsQuery = @"SELECT count(*) AS permcount
+                                                          FROM
+                                                              fn_my_permissions(NULL, 'DATABASE') perm
+                                                          WHERE
+                                                              perm.[permission_name] IN ('CREATE TABLE', 'CREATE VIEW', 'CREATE PROCEDURE', 'CREATE FUNCTION', 'CREATE SCHEMA', 'SELECT', 'INSERT', 'UPDATE', 'DELETE', 'EXECUTE', 'ALTER');";
 
         public static string SanitizeSchemaName(string value)
         {
@@ -131,39 +136,25 @@ namespace Microsoft.Deployment.Common.Helpers
             if (string.IsNullOrEmpty(connectionString))
                 return false;
 
-            for (int retries = 0; retries < MAX_RETRIES; retries++)
+            SqlConnection cn = null;
+            try
             {
-                SqlConnection cn = new SqlConnection(connectionString);
-                try
+                cn = new SqlConnection(connectionString);
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand(databasePermissionsQuery, cn))
                 {
-                    cn.Open();
-                    string tableName = "PBI" + Guid.NewGuid().ToString("N");
-                    using (SqlCommand cmd = new SqlCommand(string.Format(CultureInfo.InvariantCulture, SqlUtility.writeableDatabaseQuery, tableName), cn))
-                    {
-                        cmd.CommandTimeout = 0;
-                        cmd.ExecuteNonQuery();
-                        result = true; // Won't reach this point if we don't have write permissions
-                    }
-
-                    break;
+                    cmd.CommandTimeout = 0;
+                    result = (int)cmd.ExecuteScalar() == REQUIRED_PERMISSION_COUNT;
                 }
-                catch (Exception)
-                {
 
-                    if (cn.State == ConnectionState.Open)
-                    {
-                        // The connection is good, likely the database is not writeable, let's break the loop
-                        break;
-                    }
-
-                    // Since we didn't break above, there was a problem with the connection and might be transient, let's retry
-                }
-                finally
-                {
-                    cn.Close();
-                }
             }
-
+            catch { }
+            finally
+            {
+                if (cn != null)
+                    cn.Dispose();
+            }
+            
             return result;
         }
 

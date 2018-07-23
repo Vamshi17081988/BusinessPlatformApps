@@ -1,0 +1,17 @@
+﻿<template>
+    <require from="../../../../../SiteCommon/Web/templates/bpst-link.html"></require>
+    <h1 class="st-title">${MS.Translate.CUNA_LOGIN_TITLE}</h1>
+
+    <div>
+        <div class="st-float">
+            <button class="primary" click.trigger="onClickLogin()"
+                    disabled.bind="MS.HttpService.isServiceBusy">
+                ${MS.Translate.CUNA_LOGIN_LOGIN}
+            </button>
+        </div>
+    </div>
+    <aside if.bind="isValidated">
+        <i class="glyphicon pbi-glyph-checkmark glyph-medium"></i>
+        <span>${MS.Translate.CUNA_LOGIN_VALIDATED}</span>
+    </aside>
+</template>

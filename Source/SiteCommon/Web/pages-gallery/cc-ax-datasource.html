@@ -1,0 +1,27 @@
+﻿<template>
+    <require from="../templates/bpst-link.html"></require>
+
+    <div class="st-float-clear">
+        <h1 class="st-title">${MS.Translate.AX_DATASOURCE_TITLE}</h1>
+        <p class="st-subtitle">${MS.Translate.AX_DATASOURCE_SUBTITLE}</p>
+    </div>
+
+    <br />
+
+    <!-- AX Data source -->
+    <div class="st-text">
+        <ul>
+            <li class="tile"
+                repeat.for="route of router">
+                <a href.bind="route.href" class.bind="!route.nav ? 'disabled' : ''">${route.title}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="st-text smallFontSize">
+        <p>
+            ${viewmodel.MS.Translate.AX_DATASOURCE_CONTACT_1} <a href="${MS.Translate.APP_CONTACT_US_LINK}">${MS.Translate.AX_DATASOURCE_CONTACT_2}</a> ${viewmodel.MS.Translate.AX_DATASOURCE_CONTACT_3}
+        </p>
+    </div>
+
+</template>

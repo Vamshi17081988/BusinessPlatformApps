@@ -66,6 +66,8 @@
 
             <p class="st-text">${MS.Translate.DATA_MOVEMENT_NAMELAST}</p>
             <input class="st-input" type="text" change.delegate="onInvalidate()" disabled.bind="MS.HttpService.isServiceBusy" value.bind="nameLast" />
+            
+            <p class="st-text">By using this Informatica account, you agree to the Informatica <a href="https://www.informatica.com/terms-of-use.html" target="_blank">terms of use</a> and <a href="https://www.informatica.com/privacy-policy.html" target="_blank">privacy policy</a>.</p>
         </div>
 
         <button class="primary st-float" click.trigger="onValidate()" if.bind="!MS.HttpService.isServiceBusy">${dataMovement == dataMovementType.Informatica && informaticaAccount == 'New' ? MS.Translate.COMMON_REGISTER : MS.Translate.COMMON_LOGIN}</button>

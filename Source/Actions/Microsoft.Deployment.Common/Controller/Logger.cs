@@ -57,11 +57,6 @@ namespace Microsoft.Deployment.Common.Controller
             this.LogEvent("Custom-Property", customProperty);
         }
 
-        public void LogMetric(string metricName, double value, Dictionary<string, string> properties)
-        {
-            //this.telemetryClient.TrackMetric(metricName, value, properties);
-        }
-
         public void LogPageView(string page)
         {
             this.telemetryClient.TrackPageView(page);
@@ -71,11 +66,6 @@ namespace Microsoft.Deployment.Common.Controller
         {
             string respone = sucess ? "200" : "504";
             this.telemetryClient.TrackRequest(request, DateTimeOffset.Now, duration, respone, sucess);
-        }
-
-        public void LogDependancyCall(string dependancy, string callName, TimeSpan duration, bool sucess)
-        {
-            this.telemetryClient.TrackDependency(dependancy, callName, DateTime.Now, duration, sucess);
         }
 
         public void LogException(Exception exception, Dictionary<string, string> properties = null)

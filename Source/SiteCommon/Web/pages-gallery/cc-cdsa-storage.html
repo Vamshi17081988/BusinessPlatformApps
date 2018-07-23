@@ -1,0 +1,39 @@
+﻿<template>
+    <require from="../templates/bpst-link.html"></require>
+
+    <div class="st-float-clear">
+        <h1 class="st-title">${MS.Translate.CDSA_STORAGE_TITLE}</h1>
+        <p class="st-subtitle">${MS.Translate.CDSA_STORAGE_SUBTITLE_1}</p>
+        <p class="st-subtitle">${MS.Translate.CDSA_STORAGE_SUBTITLE_2} <a href="${MS.Translate.STORAGE_ACCOUNT_LINK}">${MS.Translate.CDSA_STORAGE_SUBTITLE_2_LINK}</a></p>
+        <p class="st-subtitle">${MS.Translate.CDSA_STORAGE_SUBTITLE_3} <a href="${MS.Translate.STORAGE_ACCOUNT_COST_LINK}">${MS.Translate.CDSA_STORAGE_SUBTITLE_3_LINK}</a></p>
+    </div>
+
+    <br />
+
+    <!-- CDSA Storage -->
+    <div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_STORAGE_ACCOUNT_NAME}</p>
+        <input class="st-input" type="text" placeholder="Storage Account Name" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="storageAccountName" keyup.delegate="onChange()">
+    </div>
+    <div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_STORAGE_ACCOUNT_KEY}</p>
+        <input class="st-input" type="text" placeholder="Storage Account Key" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="storageAccountKey" keyup.delegate="onChange()">
+    </div>
+    <!--<div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_KEYVAULT_SUBSCRIPTION_ID}</p>
+        <input class="st-input" type="text" placeholder="Keyvault Subscription Id" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="keyVaultSubscriptionId">
+    </div>
+    <div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_KEYVAULT_RESOURCEGROUP_NAME}</p>
+        <input class="st-input" type="text" placeholder="Keyvault Resourcegroup Name" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="keyVaultResourceGroupName">
+    </div>
+    <div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_KEYVAULT_NAME}</p>
+        <input class="st-input" type="text" placeholder="Keyvault Name" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="keyVaultName">
+    </div>
+    <div class="st-float-clear">
+        <p class="st-text">${MS.Translate.CDSA_KEYVAULT_SECRETPATH}</p>
+        <input class="st-input" type="text" placeholder="Keyvault Secret Name" disabled.bind="viewmodel.MS.HttpService.isServiceBusy" value.bind="keyVaultSecretPath">
+    </div>-->
+
+</template>

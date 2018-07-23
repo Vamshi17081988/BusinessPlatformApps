@@ -13,7 +13,7 @@ export class Customize extends ViewModelBase {
     async onLoaded(): Promise<void> {
         super.onLoaded();
         this.urlRegex = /^(ht|f)tps:\/\/[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%\,\{\}\\|\\\^\[\]]+)?\/$/;
-        await this.getInstances();
+        //await this.getInstances();
     }
 
     async onValidate(): Promise<boolean> {
@@ -63,9 +63,9 @@ export class Customize extends ViewModelBase {
     }
 
     async getInstances(): Promise<void> {
-        this.instances = await this.MS.HttpService.getResponseAsync('Microsoft-GetAxInstances');
-        if (this.instances && this.instances.length > 0) {
-            this.selectedInstance = this.instances[0];
-        }
+        //this.instances = await this.MS.HttpService.getResponseAsync('Microsoft-GetAxInstances');
+        //if (this.instances && this.instances.length > 0) {
+            //this.selectedInstance = this.instances[0];
+        //}
     }
 }

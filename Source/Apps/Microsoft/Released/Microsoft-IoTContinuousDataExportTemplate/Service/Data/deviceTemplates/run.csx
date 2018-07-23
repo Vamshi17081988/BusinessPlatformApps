@@ -30,13 +30,17 @@ public static async Task Run(CloudBlockBlob myBlob, TraceWriter log)
 
     using (var blobStream = new MemoryStream())
     {
+        // Download blob content and save them to memory stream
         await myBlob.DownloadToStreamAsync(blobStream);
         blobStream.Position = 0;
 
+        // Create Avro generic reader from memory stream
         using (var reader = AvroContainer.CreateGenericReader(blobStream))
         {
+            // Loop through blocks within the container
             while (reader.MoveNext())
             {
+                // Loop through Avro record inside the block and get all the fields
                 foreach (AvroRecord record in reader.Current.Objects)
                 {
                     try

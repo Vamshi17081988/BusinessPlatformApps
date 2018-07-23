@@ -17,6 +17,8 @@ using Microsoft.Hadoop.Avro.Container;
 
 using Microsoft.WindowsAzure.Storage.Blob;
 
+using Newtonsoft.Json;
+
 // Device data processing
 public static async Task Run(CloudBlockBlob myBlob, TraceWriter log)
 {
@@ -30,13 +32,18 @@ public static async Task Run(CloudBlockBlob myBlob, TraceWriter log)
 
     using (var blobStream = new MemoryStream())
     {
+        // Download blob content and save them to memory stream
         await myBlob.DownloadToStreamAsync(blobStream);
         blobStream.Position = 0;
 
+        // Create generic Avro reader from memory stream
         using (var reader = AvroContainer.CreateGenericReader(blobStream))
         {
+            // For one Avro Container, it may contains multiple blocks
+            // Loop through each block within the container
             while (reader.MoveNext())
             {
+                // Loop through Avro record inside the block and extract the fields
                 foreach (AvroRecord record in reader.Current.Objects)
                 {
                     try
@@ -164,12 +171,18 @@ private static void ProcessingProperty(Device device, KeyValuePair<string, dynam
         case Int64 _:
         case double _:
         case float _:
-            propertyRow["numericValue"] = decimal.Parse(entry.Value.ToString());
+            propertyRow["numericValue"] = float.Parse(entry.Value.ToString());
+            break;
+        case string _:
+            propertyRow["stringValue"] = entry.Value;
+            break;
+        case IDictionary<string, object> _:
+            propertyRow["stringValue"] = JsonConvert.SerializeObject(entry.Value);
             break;
         case null:
             break;
         default:
-            propertyRow["stringValue"] = entry.Value.ToString();
+            propertyRow["stringValue"] = JsonConvert.SerializeObject(entry.Value);
             break;
     }
 
