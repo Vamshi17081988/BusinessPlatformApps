@@ -1,0 +1,367 @@
+﻿REFERENCE ASSEMBLY [Newtonsoft.Json];
+REFERENCE ASSEMBLY [USQLCSharpProject1];
+
+@availability_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/Availability/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @availability_columns =
+     PROCESS @availability_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             City string,
+             ClientIP string,
+             SessionIsFirst string,
+             UserIsAuthenticated string,
+             DataDocumentVersion string,
+             DataId string,
+             TestRunId string,
+             TestTimeStamp string,
+             TestName string,
+             RunLocation string,
+             Result string,
+             Message string,
+             Count string,
+             DurationMetricName string,
+             DurationMetricValue string,
+             DurationMetricCount string,
+             DurationMetricMin string,
+             DurationMetricMax string,
+             DurationMetricStdDev string,
+             DurationMetricSampledValue string,
+             AvailabilityMetricName string,
+             AvailabilityMetricValue string,
+             AvailabilityMetricCount string,
+             AvailabilityMetricMin string,
+             AvailabilityMetricMax string,
+             AvailabilityMetricStdDev string,
+             AvailabilityMetricSampledValue string,
+             DataSizeMetricName string,
+             DataSizeMetricValue string,
+             DataSizeMetricCount string
+     USING new USQLCSharpProject1.ProcessAvailability();
+
+OUTPUT @availability_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/Availability.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@event_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/Event/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @event_columns =
+     PROCESS @event_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             Browser string,
+             BrowserVersion string,
+             DeviceModel string,
+             DeviceName string,
+             DeviceId string,
+             OsVersion string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionId string,
+             SessionIsFirst string,
+             UserAnonId string,
+             UserIsAuthenticated string,
+             DataDocumentVersion string,
+             DataId string,
+             Name string,
+             Count string
+     USING new USQLCSharpProject1.ProcessEvent();    
+
+OUTPUT @event_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/Event.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@exceptions_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/Exceptions/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @exceptions_columns =
+     PROCESS @exceptions_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             RoleInstance string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionIsFirst string,
+             DataDocumentVersion string,
+             DataId string,
+             Assembly string,
+             Count string,
+             ExceptionGroup string,
+             ExceptionType string,
+             FailedUserCodeMethod string,
+             FailedUserCodeAssembly string,
+             HandledAt string,
+             HasFullStack string,
+             Id string,
+             ProblemId string,
+             Method string,
+             OuterExceptionMessage string,
+             OuterExceptionThrownAtAssembly string,
+             OuterExceptionThrownAtMethod string,
+             OuterExceptionType string,
+             InnermostExceptionMessage string,
+             InnermostExceptionThrownAtAssembly string,
+             InnermostExceptionThrownAtMethod string,
+             InnerMostExceptionType string,
+             TypeName string
+     USING new USQLCSharpProject1.ProcessExceptions();    
+
+OUTPUT @exceptions_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/Exceptions.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@pageViewPerformance_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/PageViewPerformance/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @pageViewPerformance_columns =
+     PROCESS @pageViewPerformance_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             Browser string,
+             BrowserVersion string,
+             DeviceModel string,
+             DeviceName string,
+             DeviceId string,
+             OsVersion string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionId string,
+             SessionIsFirst string,
+             UserAnonId string,
+             UserIsAuthenticated string,
+             DataDocumentVersion string,
+             DataId string,
+             Name string,
+             Url string,
+             ClientProcessValue string,
+             ClientProcessCount string,
+             ClientProcessMin string,
+             ClientProcessMax string,
+             ClientProcessStdDev string,
+             ClientProcessSampledValue string,
+             NetworkConnectionValue string,
+             NetworkConnectionCount string,
+             NetworkConnectionMin string,
+             NetworkConnectionMax string,
+             NetworkConnectionStdDev string,
+             NetworkConnectionSampledValue string,
+             ReceiveRequestValue string,
+             ReceiveRequestCount string,
+             ReceiveRequestMin string,
+             ReceiveRequestMax string,
+             ReceiveRequestStdDev string,
+             ReceiveRequestSampledValue string,
+             SendRequestValue string,
+             SendRequestCount string,
+             SendRequestMin string,
+             SendRequestMax string,
+             SendRequestStdDev string,
+             SendRequestSampledValue string,
+             TotalValue string,
+             TotalCount string,
+             TotalMin string,
+             TotalMax string,
+             TotalStdDev string,
+             TotalSampledValue string,
+             UrlDataBase string,
+             UrlDataHashTag string,
+             UrlDataHost string,
+             UrlDataProtocol string
+     USING new USQLCSharpProject1.ProcessPageViewPerformance();    
+
+OUTPUT @pageViewPerformance_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/PageViewPerformance.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@pageViews_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/PageViews/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @pageViews_columns =
+     PROCESS @pageViews_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             Browser string,
+             BrowserVersion string,
+             DeviceModel string,
+             DeviceName string,
+             DeviceId string,
+             OsVersion string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionId string,
+             SessionIsFirst string,
+             UserAnonId string,
+             UserIsAuthenticated string,
+             DataDocumentVersion string,
+             DataId string,
+             ViewCount string,
+             DurationMetricValue string,
+             DurationMetricCount string,
+             DurationMetricMin string,
+             DurationMetricMax string,
+             DurationMetricStdDev string,
+             DurationMetricSampledValue string,
+             ViewName string,
+             ViewUrl string,
+             UrlDataBase string,
+             UrlDataHashTag string,
+             UrlDataHost string,
+             UrlDataProtocol string
+     USING new USQLCSharpProject1.ProcessPageViews();    
+
+OUTPUT @pageViews_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/PageViews.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@rdd_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/Rdd/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @rdd_columns =
+     PROCESS @rdd_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             Browser string,
+             BrowserVersion string,
+             DeviceModel string,
+             DeviceName string,
+             DeviceId string,
+             OsVersion string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionId string,
+             SessionIsFirst string,
+             UserAnonId string,
+             UserIsAuthenticated string,
+             DataDocumentVersion string,
+             DataId string,
+             Id string,
+             ResultCode string,
+             Name string,
+             Success string,
+             Async string,
+             DependencyTypeName string,
+             CommandName string,
+             Count string,
+             BaseName string,
+             Url string,
+             Type string,
+             DurationMetricType string,
+             DurationMetricName string,
+             DurationMetricValue string,
+             DurationMetricCount string,
+             DurationMetricMin string,
+             DurationMetricMax string,
+             DurationMetricStdDev string,
+             DurationMetricSampledValue string,
+             UrlDataBase string,
+             UrlDataHashTag string,
+             UrlDataHost string,
+             UrlDataProtocol string
+     USING new USQLCSharpProject1.ProcessRdd();    
+
+OUTPUT @rdd_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/Rdd.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);
+
+@requests_json =  
+    EXTRACT jsonString string
+    FROM "wasb://telemetry@pbiststorage.blob.core.windows.net/pbist_84bbc724c11044908f52c08f8cce971d/Requests/2016-06-{*}/{*}/{*}"
+    USING Extractors.Text(delimiter : '\n', quoting : false);
+
+ @requests_columns =
+     PROCESS @requests_json
+     PRODUCE EventTime string,
+             IsSynthetic string,
+             SamplingRate string,
+             RoleInstance string,
+             DeviceType string,
+             Continent string,
+             Country string,
+             Province string,
+             City string,
+             ClientIP string,
+             OperationId string,
+             OperationName string,
+             OperationParentId string,
+             SessionIsFirst string,
+             DataDocumentVersion string,
+             DataId string,
+             Id string,
+             Name string,
+             Count string,
+             ResponseCode string,
+             Success string,
+             Url string,
+             DurationMetricValue string,
+             DurationMetricCount string,
+             DurationMetricMin string,
+             DurationMetricMax string,
+             DurationMetricStdDev string,
+             DurationMetricSampledValue string,
+             UrlDataBase string,
+             UrlDataHashTag string,
+             UrlDataHost string,
+             UrlDataProtocol string
+     USING new USQLCSharpProject1.ProcessRequests();    
+
+OUTPUT @requests_columns
+    TO "wasb://telemetry-output-1@errenai.blob.core.windows.net/Requests.csv"
+    USING Outputters.Csv(outputHeader : true, quoting : true);

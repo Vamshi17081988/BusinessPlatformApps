@@ -130,6 +130,13 @@ namespace Microsoft.Deployment.Common.Helpers
             return await this.ExecuteGenericRequestWithHeaderAsync(method, requestUri, body);
         }
 
+        public async Task<HttpResponseMessage> ExecuteWithSubscriptionAsync(HttpMethod method, string relativeUrl, string apiVersion, string body, string otherqueryParam)
+        {
+            string requestUri = Constants.AzureManagementApi + $"subscriptions/{this.Subscription}/{relativeUrl}?{otherqueryParam}&api-version={apiVersion}";
+
+            return await this.ExecuteGenericRequestWithHeaderAsync(method, requestUri, body);
+        }
+
         public async Task<HttpResponseMessage> ExecuteGenericRequestNoHeaderAsync(HttpMethod method, string url, string body)
         {
             using (HttpClient client = new HttpClient())

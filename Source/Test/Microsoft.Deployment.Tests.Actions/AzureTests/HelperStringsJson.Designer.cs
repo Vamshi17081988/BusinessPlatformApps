@@ -19,7 +19,7 @@ namespace Microsoft.Deployment.Tests.Actions.AzureTests {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class HelperStringsJson {
@@ -80,6 +80,25 @@ namespace Microsoft.Deployment.Tests.Actions.AzureTests {
         internal static string ApplicationPermission {
             get {
                 return ResourceManager.GetString("ApplicationPermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;requiredResourceAccess&quot;: [
+        ///    {
+        ///      &quot;resourceAppId&quot;: &quot;00000002-0000-0000-c000-000000000000&quot;,
+        ///      &quot;resourceAccess&quot;: [
+        ///        {
+        ///          &quot;id&quot;: &quot;311a71cc-e848-46a1-bdf8-97ff7156d8e6&quot;,
+        ///          &quot;type&quot;: &quot;Scope&quot;
+        ///        }
+        ///      ]
+        ///    }
+        ///  ]}.
+        /// </summary>
+        internal static string BasicPermission {
+            get {
+                return ResourceManager.GetString("BasicPermission", resourceCulture);
             }
         }
     }

@@ -1,0 +1,133 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "factoryName": {
+      "type": "string",
+      "metadata": "Data Factory Name",
+      "defaultValue": "erenTestAdf"
+    },
+    "ServicePrincipalKey": {
+      "type": "secureString",
+      "metadata": "Secure string for 'servicePrincipalKey' of 'AppInsights_AzureDataLakeAnalytics'"
+    },
+    "DataLakeAnalyticsName": {
+      "type": "string",
+      "defaultValue": "testtelemetry"
+    },
+    "ServicePrincipalId": {
+      "type": "string",
+      "defaultValue": "db19a916-1f20-4486-9f7f-0bc19b7bbcd7"
+    },
+    "Tenant": {
+      "type": "string",
+      "defaultValue": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+    },
+    "SubscriptionId": {
+      "type": "string",
+      "defaultValue": "657eb4a4-2e7c-485c-aee6-2816aef905c5"
+    },
+    "ResourceGroupName": {
+      "type": "string",
+      "defaultValue": "erentest"
+    },
+    "DataLakeStoreName": {
+      "type": "string",
+      "defaultValue": "testtelemetryadls"
+    }
+  },
+  "variables": {
+    "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]",
+    "DataLakeStoreUri": "[concat('https://', parameters('DataLakeStoreName'), '.azuredatalakestore.net/webhdfs/v1')]"
+
+  },
+  "resources": [
+    {
+      "apiVersion": "2018-06-01",
+      "name": "[parameters('factoryName')]",
+      "location": "East US",
+      "type": "Microsoft.DataFactory/factories",
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    },
+
+    {
+      "name": "[concat(parameters('factoryName'), '/pipeline1')]",
+      "type": "Microsoft.DataFactory/factories/pipelines",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "activities": [
+          {
+            "name": "U-SQL1",
+            "type": "DataLakeAnalyticsU-SQL",
+            "dependsOn": [],
+            "policy": {
+              "timeout": "7.00:00:00",
+              "retry": 0,
+              "retryIntervalInSeconds": 30,
+              "secureOutput": false
+            },
+            "userProperties": [],
+            "typeProperties": {
+              "scriptPath": "/scripts/script.usql",
+              "scriptLinkedService": {
+                "referenceName": "AppInsights_AzureDataLataStore",
+                "type": "LinkedServiceReference"
+              }
+            },
+            "linkedServiceName": {
+              "referenceName": "AppInsights_AzureDataLakeAnalytics",
+              "type": "LinkedServiceReference"
+            }
+          }
+        ]
+      },
+      "dependsOn": [
+        "[concat(variables('factoryId'), '/linkedServices/AppInsights_AzureDataLataStore')]",
+        "[concat(variables('factoryId'), '/linkedServices/AppInsights_AzureDataLakeAnalytics')]"
+      ]
+    },
+    {
+      "name": "[concat(parameters('factoryName'), '/AppInsights_AzureDataLakeAnalytics')]",
+      "type": "Microsoft.DataFactory/factories/linkedServices",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "description": "Linked ADLA Service for App Insights Telemetry.",
+        "type": "AzureDataLakeAnalytics",
+        "typeProperties": {
+          "accountName": "[parameters('DataLakeAnalyticsName')]",
+          "servicePrincipalId": "[parameters('ServicePrincipalId')]",
+          "servicePrincipalKey": {
+            "type": "SecureString",
+            "value": "[parameters('ServicePrincipalKey')]"
+          },
+          "tenant": "[parameters('Tenant')]",
+          "subscriptionId": "[parameters('SubscriptionId')]",
+          "resourceGroupName": "[parameters('ResourceGroupName')]"
+        }
+      },
+      "dependsOn": [ "[variables('factoryId')]" ]
+    },
+    {
+      "name": "[concat(parameters('factoryName'), '/AppInsights_AzureDataLataStore')]",
+      "type": "Microsoft.DataFactory/factories/linkedServices",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "type": "AzureDataLakeStore",
+        "typeProperties": {
+          "dataLakeStoreUri": "[variables('DataLakeStoreUri')]",
+          "servicePrincipalId": "[parameters('ServicePrincipalId')]",
+          "servicePrincipalKey": {
+            "type": "SecureString",
+            "value": "[parameters('ServicePrincipalKey')]"
+          },
+          "tenant": "[parameters('Tenant')]",
+          "subscriptionId": "[parameters('SubscriptionId')]",
+          "resourceGroupName": "[parameters('ResourceGroupName')]"
+        }
+      },
+      "dependsOn": [ "[variables('factoryId')]" ]
+    }
+  ]
+}
