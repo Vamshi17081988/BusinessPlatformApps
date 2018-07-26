@@ -93,6 +93,15 @@ namespace Microsoft.Deployment.Tests.Actions.AzureTests {
         ///          &quot;type&quot;: &quot;Scope&quot;
         ///        }
         ///      ]
+        ///    },
+        ///    {
+        ///      &quot;resourceAppId&quot;: &quot;cfa8b339-82a2-471a-a3c9-0fc0be7a4093&quot;,
+        ///      &quot;resourceAccess&quot;: [
+        ///        {
+        ///          &quot;id&quot;: &quot;f53da476-18e3-4152-8e01-aec403e6edc0&quot;,
+        ///          &quot;type&quot;: &quot;Scope&quot;
+        ///        }
+        ///      ]
         ///    }
         ///  ]}.
         /// </summary>

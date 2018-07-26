@@ -96,6 +96,11 @@ namespace Microsoft.Deployment.Actions.AzureCustom
             return token.Claims.SingleOrDefault(p => p.Type == "unique_name").Value;
         }
 
+        public static string GetOIDFromToken(JToken azureToken)
+        {
+            var token = new JwtSecurityToken(azureToken["id_token"].ToString());
+            return token.Claims.SingleOrDefault(p => p.Type == "oid").Value;
+        }
 
         public static string GetTenantFromToken(JToken azureToken)
         {

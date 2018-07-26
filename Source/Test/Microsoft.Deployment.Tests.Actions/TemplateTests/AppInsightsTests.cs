@@ -50,10 +50,10 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
             dataStore.AddToDataStore("ADLAName", "adlaappinsigtsmo");
             dataStore.AddToDataStore("ADLSName", "adlsappinsigtsmo");
 
-            dataStore.AddToDataStore("SPNAppId", "6c08fe5e-8255-4450-8a3c-1a53847a2aee");
-            dataStore.AddToDataStore("SPNKey", "n+YK5CgfiEtpEag1wH+LIhB4i6fzpNA3EWNtXzwkpmt/SKcZxP9jzln2nfs=");
+            dataStore.AddToDataStore("SPNAppId", "5d7ddf88-b706-441c-b13b-a75b06715d43");
+            dataStore.AddToDataStore("SPNKey", "6EcZhy+jrGHcB0S2mZSD55MIJg1BZ+q7rr5p38GlCKz3cZwTcwElIGWWHbc=");
             dataStore.AddToDataStore("SPNTenantId", "72f988bf-86f1-41af-91ab-2d7cd011db47");
-            dataStore.AddToDataStore("SPNObjectId", "ae476a97-afe0-4782-920c-aa51505a24c7");
+            dataStore.AddToDataStore("SPNObjectId", "5d82f050-efe9-4f2d-b2bf-6a3f17534844");
             //var response = TestManager.ExecuteAction("Microsoft-UploadToADLS", dataStore, "Microsoft-ApplicationInsightsTemplate");
 
             var response = TestManager.ExecuteAction("Microsoft-GrantSPNPermissionsToResourceGroup", dataStore, "Microsoft-ApplicationInsightsTemplate");
@@ -69,10 +69,10 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
             dataStore.AddToDataStore("ADLAName", "adlaappinsigtsmo3");
             dataStore.AddToDataStore("ADLSName", "adlsappinsigtsmo3");
 
-            dataStore.AddToDataStore("SPNAppId", "6c08fe5e-8255-4450-8a3c-1a53847a2aee");
-            dataStore.AddToDataStore("SPNKey", "n+YK5CgfiEtpEag1wH+LIhB4i6fzpNA3EWNtXzwkpmt/SKcZxP9jzln2nfs=");
+            dataStore.AddToDataStore("SPNAppId", "5d7ddf88-b706-441c-b13b-a75b06715d43");
+            dataStore.AddToDataStore("SPNKey", "6EcZhy+jrGHcB0S2mZSD55MIJg1BZ+q7rr5p38GlCKz3cZwTcwElIGWWHbc=");
             dataStore.AddToDataStore("SPNTenantId", "72f988bf-86f1-41af-91ab-2d7cd011db47");
-            dataStore.AddToDataStore("SPNObjectId", "ae476a97-afe0-4782-920c-aa51505a24c7");
+            dataStore.AddToDataStore("SPNObjectId", "5d82f050-efe9-4f2d-b2bf-6a3f17534844");
             this.UISteps(dataStore);
 
             response = await TestManager.ExecuteActionAsync("Microsoft-AddADLAViaSPN", dataStore, "Microsoft-ApplicationInsightsTemplate");
@@ -100,19 +100,56 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
         }
 
         [TestMethod]
-        public async Task DeployADLAViaARM()
+        public async Task CDSASetUp()
         {
-        //    var dataStore =  await TestManager.GetDataStore();
+            var dataStore = await TestManager.GetDataStore();
+            ActionResponse response = null;
 
-        //    ActionResponse response = null;
-        //    dataStore.AddToDataStore("AzureArmFile", "Service/AzureArm/adla.json");
+            dataStore.AddToDataStore("ADLAName", "adlaappinsigtsmo3");
+            dataStore.AddToDataStore("ADLSName", "adlsappinsigtsmo3");
 
-        //    JObject paramsArm = new JObject();
-        //    paramsArm.Add("name", "adlaappinsigtsmo");
-        //    paramsArm.Add("storageAccountName", "adlsappinsigtsmo");
-        //    dataStore.AddToDataStore("AzureArmParameters", paramsArm);
-        //    response = await TestManager.ExecuteActionAsync("Microsoft-DeployAzureArmTemplate", dataStore, "Microsoft-ApplicationInsightsTemplate");
-        //    Assert.IsTrue(response.IsSuccess);
+            dataStore.AddToDataStore("SPNAppId", "5d7ddf88-b706-441c-b13b-a75b06715d43");
+            dataStore.AddToDataStore("SPNKey", "6EcZhy+jrGHcB0S2mZSD55MIJg1BZ+q7rr5p38GlCKz3cZwTcwElIGWWHbc=");
+            dataStore.AddToDataStore("SPNTenantId", "72f988bf-86f1-41af-91ab-2d7cd011db47");
+            dataStore.AddToDataStore("SPNObjectId", "5d82f050-efe9-4f2d-b2bf-6a3f17534844");
+            dataStore.AddToDataStore("oauthType", "powerbi");
+
+            dataStore.AddToDataStore("StorageAccountName", "testmostoragerequired");
+            dataStore.AddToDataStore("StorageAccountContainer", "appinsightsouput");
+
+ 
+            dataStore.AddToDataStore("KeyVaultName", "pbikeyvaultunqrz");
+            dataStore.AddToDataStore("KeyVaultSecretName", "pbisecret");
+
+            // Login to PBIX
+            //var powerBI =  AAD.GetUserTokenFromPopup("powerbi").Result;
+            //dataStore.AddToDataStore("PBIToken", powerBI.GetJson("PBIToken").GetJObject(), DataStoreType.Private);
+
+            //response = TestManager.ExecuteAction("Microsoft-GetPBIClusterUri", dataStore, "Microsoft-ApplicationInsightsTemplate");
+            //response = TestManager.ExecuteAction("Microsoft-GetPBIWorkspacesCDSA", dataStore, "Microsoft-ApplicationInsightsTemplate");
+
+            //// Select a workspace
+            //var workspaceId = JArray.Parse(response.Body.ToString())[22]["id"];
+            //dataStore.AddToDataStore("PBIWorkspaceId", workspaceId);
+            dataStore.AddToDataStore("PBIWorkspaceId", "19977aed-0755-40b9-aab4-a33f2f4e022c");
+
+            // Create KeyVault and give PBI Access
+            response = TestManager.ExecuteAction("Microsoft-CreateCDSAKeyVault", dataStore, "Microsoft-ApplicationInsightsTemplate");
+            Assert.IsTrue(response.IsSuccess);
+            
+            response = TestManager.ExecuteAction("Microsoft-CreateEntryInKeyVault", dataStore, "Microsoft-ApplicationInsightsTemplate");
+            Assert.IsTrue(response.IsSuccess);
+
+            // Upload datapool to destination
+
+            // mount datapool inside powerbi
+
+            // upload PBIX
+
+            // Change parameters for PBIX
+
+            // Get redirect URI where pbix file is
+
         }
 
         public void UISteps(DataStore dataStore)
@@ -128,6 +165,7 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
             var selectedAppInsightsExport = JArray.Parse(getContinuousExportsResponse.Body.ToString())[0];
             dataStore.AddToDataStore("SelectedAppInsightsExport", selectedAppInsightsExport);
         }
+
     }
 }
 
