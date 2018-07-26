@@ -46,7 +46,7 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
         [TestMethod]
         public async Task DeployADLAViaSPN()
         {
-            var dataStore = await TestManager.GetDataStore(true);
+            var dataStore = await TestManager.GetDataStore();
             ActionResponse response = null;
 
             dataStore.AddToDataStore("ADLAName", "adlaappinsigtsmo4");
@@ -67,7 +67,7 @@ namespace Microsoft.Deployment.Tests.Actions.TemplateTests
             dataStore.AddToDataStore("AzureArmFile", "Service/AzureArm/adf.json");
 
             JObject paramsArm = new JObject();
-            paramsArm.Add("factoryName", "testmofactory23");
+            paramsArm.Add("factoryName", "testmofactory234");
             paramsArm.Add("ServicePrincipalKey", dataStore.GetValue("SPNKey"));
             paramsArm.Add("DataLakeAnalyticsName", dataStore.GetValue("ADLAName"));
             paramsArm.Add("ServicePrincipalId", dataStore.GetValue("SPNAppId"));

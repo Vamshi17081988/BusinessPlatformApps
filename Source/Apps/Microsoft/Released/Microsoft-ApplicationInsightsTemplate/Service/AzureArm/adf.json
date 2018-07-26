@@ -53,7 +53,7 @@
     },
 
     {
-      "name": "[concat(parameters('factoryName'), '/pipeline1')]",
+      "name": "[concat(parameters('factoryName'), '/pipelineAll')]",
       "type": "Microsoft.DataFactory/factories/pipelines",
       "apiVersion": "2018-06-01",
       "properties": {
@@ -128,6 +128,37 @@
         }
       },
       "dependsOn": [ "[variables('factoryId')]" ]
+    },
+    {
+      "name": "[concat(parameters('factoryName'), '/dailyTriggerETL')]",
+      "type": "Microsoft.DataFactory/factories/triggers",
+      "apiVersion": "2018-06-01",
+      "properties": {
+        "description": "Daily trigger for App Insights solution template ETL. Can be modified later by user.",
+        "runtimeState": "Started",
+        "pipelines": [
+          {
+            "pipelineReference": {
+              "referenceName": "pipelineAll",
+              "type": "PipelineReference"
+            },
+            "parameters": {}
+          }
+        ],
+        "type": "ScheduleTrigger",
+        "typeProperties": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "startTime": "2018-07-25T10:50:00.776Z",
+            "timeZone": "UTC",
+            "schedule": {}
+          }
+        }
+      },
+      "dependsOn": [
+        "[concat(variables('factoryId'), '/pipelines/pipelineAll')]"
+      ]
     }
   ]
 }
