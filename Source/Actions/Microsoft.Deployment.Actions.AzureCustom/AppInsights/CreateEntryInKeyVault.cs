@@ -49,7 +49,7 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
             {
                 storageDetails = new Storagedetails()
                 {
-                    accountKey = await GetStorageKey(azureToken, subscriptionId, resourceGroup, storageAccountName),
+                    accountKey = await AzureUtility.GetStorageKey(azureToken, subscriptionId, resourceGroup, storageAccountName),
                     accountName = storageAccountName,
                     containerName = container
                 },
@@ -106,21 +106,6 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
             }
 
             return tokenObj["access_token"].ToString();
-        }
-
-        public async Task<string> GetStorageKey(string azureToken, string subscriptionId, string resourceGroup, string accountName)
-        {
-            AzureHttpClient client = new AzureHttpClient(azureToken, subscriptionId, resourceGroup);
-
-            var response = await client.ExecuteWithSubscriptionAndResourceGroupAsync(HttpMethod.Post, $"providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys", "2016-01-01", string.Empty);
-            if (response.IsSuccessStatusCode)
-            {
-                var subscriptionKeys = JsonUtility.GetJObjectFromJsonString(await response.Content.ReadAsStringAsync());
-                string key = subscriptionKeys["keys"][0]["value"].ToString();
-                return key;
-            }
-
-            return string.Empty;
         }
     }
 

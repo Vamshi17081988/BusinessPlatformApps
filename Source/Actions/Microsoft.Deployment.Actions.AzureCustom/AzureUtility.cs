@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Deployment.Common.ActionModel;
 using Microsoft.Deployment.Common.Exceptions;
 using Microsoft.Deployment.Common.Helpers;
+using System.Net.Http;
 
 namespace Microsoft.Deployment.Actions.AzureCustom
 {
@@ -120,6 +121,21 @@ namespace Microsoft.Deployment.Actions.AzureCustom
         {
             var token = azureToken["access_token"]?.ToString();
             return token;
+        }
+
+        public static async Task<string> GetStorageKey(string azureToken, string subscriptionId, string resourceGroup, string accountName)
+        {
+            AzureHttpClient client = new AzureHttpClient(azureToken, subscriptionId, resourceGroup);
+
+            var response = await client.ExecuteWithSubscriptionAndResourceGroupAsync(HttpMethod.Post, $"providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys", "2016-01-01", string.Empty);
+            if (response.IsSuccessStatusCode)
+            {
+                var subscriptionKeys = JsonUtility.GetJObjectFromJsonString(await response.Content.ReadAsStringAsync());
+                string key = subscriptionKeys["keys"][0]["value"].ToString();
+                return key;
+            }
+
+            return string.Empty;
         }
     }
 }

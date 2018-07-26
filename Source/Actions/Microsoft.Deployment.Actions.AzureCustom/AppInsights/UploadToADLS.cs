@@ -41,12 +41,12 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
             var token = await ApplicationTokenProvider.LoginSilentAsync(domain, cred);
             // - use user token for testing only - var token = new ServiceClientCredImp(azureToken);
             var adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(token);
-            
+
             var newtonsoft = Path.Combine(request.Info.App.AppFilePath, "Service/libraries/Newtonsoft.Json.dll");
             var customLib = Path.Combine(request.Info.App.AppFilePath, "Service/libraries/USQLCSharpProject1.dll");
             var script = Path.Combine(request.Info.App.AppFilePath, "Service/libraries/Script.usql");
-            
-            adlsFileSystemClient.FileSystem.UploadFile(ADLSName, newtonsoft, "/library/Newtonsoft.Json.dll",-1,false,true);
+
+            adlsFileSystemClient.FileSystem.UploadFile(ADLSName, newtonsoft, "/library/Newtonsoft.Json.dll", -1, false, true);
             adlsFileSystemClient.FileSystem.UploadFile(ADLSName, customLib, "/library/USQLCSharpProject1.dll", -1, false, true);
             adlsFileSystemClient.FileSystem.UploadFile(ADLSName, script, "/scripts/script.usql", -1, false, true);
 

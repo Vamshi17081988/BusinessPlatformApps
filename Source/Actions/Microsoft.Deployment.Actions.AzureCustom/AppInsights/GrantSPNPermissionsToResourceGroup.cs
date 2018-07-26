@@ -38,9 +38,19 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
             nestedParam.Add("principalId", appObject);
             paramsArm.Add("properties", nestedParam);
             var rolesResponses2 = await client.ExecuteWithSubscriptionAndResourceGroupAsync(HttpMethod.Put, $"providers/Microsoft.Authorization/roleAssignments/{Guid.NewGuid()}", "2015-07-01", paramsArm.ToString());
+
             if (rolesResponses2.IsSuccessStatusCode)
             {
-                return new ActionResponse(ActionStatus.Success);
+                paramsArm = new JObject();
+                nestedParam = new JObject();
+                nestedParam.Add("roleDefinitionId", $"/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/{roleGuid}");
+                nestedParam.Add("principalId", "8c489c13-bc34-4ab1-a10f-8298d2da7f27");
+                paramsArm.Add("properties", nestedParam);
+                var rolesResponses3 = await client.ExecuteWithSubscriptionAndResourceGroupAsync(HttpMethod.Put, $"providers/Microsoft.Authorization/roleAssignments/{Guid.NewGuid()}", "2015-07-01", paramsArm.ToString());
+                if (rolesResponses3.IsSuccessStatusCode)
+                {
+                    return new ActionResponse(ActionStatus.Success);
+                }
             }
 
             return new ActionResponse(ActionStatus.Failure);

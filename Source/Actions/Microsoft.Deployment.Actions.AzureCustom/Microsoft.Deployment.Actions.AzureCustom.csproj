@@ -301,6 +301,7 @@
     <Compile Include="ApiManagement\CreateApiManagementLogger.cs" />
     <Compile Include="ApiManagement\GetApiManagementServices.cs" />
     <Compile Include="ApiManagement\UpdateApiManagementPolicy.cs" />
+    <Compile Include="AppInsights\CreateStorageAccount.cs" />
     <Compile Include="AppInsights\CreateEntryInKeyVault.cs" />
     <Compile Include="AppInsights\CreateCDSAKeyVault.cs" />
     <Compile Include="AppInsights\CreateADLAViaSPN.cs" />
@@ -308,6 +309,7 @@
     <Compile Include="AppInsights\GetAppInsightsInstances.cs" />
     <Compile Include="AppInsights\GetContinuousExports.cs" />
     <Compile Include="AppInsights\GrantSPNPermissionsToResourceGroup.cs" />
+    <Compile Include="AppInsights\UploadDPLXToBlob.cs" />
     <Compile Include="AppInsights\UploadToADLS.cs" />
     <Compile Include="Arm\DeployAzureArmTemplate.cs" />
     <Compile Include="Arm\WaitForArmDeploymentStatus.cs" />

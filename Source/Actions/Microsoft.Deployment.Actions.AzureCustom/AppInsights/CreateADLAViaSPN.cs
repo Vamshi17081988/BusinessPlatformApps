@@ -71,7 +71,7 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
 
             var storageInfo = new Azure.Management.DataLake.Analytics.Models.StorageAccountInfo();
             storageInfo.Name = aiStorageName;
-            storageInfo.AccessKey = await GetStorageKey(azureToken, aiSubscriptionId, aiResourceGroup, aiStorageName);
+            storageInfo.AccessKey = await AzureUtility.GetStorageKey(azureToken, aiSubscriptionId, aiResourceGroup, aiStorageName);
             analyticsParam.StorageAccounts = new List<Azure.Management.DataLake.Analytics.Models.StorageAccountInfo>();
             analyticsParam.StorageAccounts.Add(storageInfo);
             
@@ -82,21 +82,6 @@ namespace Microsoft.Deployment.Actions.AzureCustom.AppInsights
             }
 
             return new ActionResponse(ActionStatus.Success);
-        }
-
-        public async Task<string> GetStorageKey(string azureToken, string subscriptionId, string resourceGroup, string accountName)
-        {
-            AzureHttpClient client = new AzureHttpClient(azureToken, subscriptionId, resourceGroup);
-
-            var response = await client.ExecuteWithSubscriptionAndResourceGroupAsync(HttpMethod.Post, $"providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys", "2016-01-01", string.Empty);
-            if (response.IsSuccessStatusCode)
-            {
-                var subscriptionKeys = JsonUtility.GetJObjectFromJsonString(await response.Content.ReadAsStringAsync());
-                string key = subscriptionKeys["keys"][0]["value"].ToString();
-                return key;
-            }
-
-            return string.Empty;
         }
     }
 }

@@ -1,0 +1,1290 @@
+﻿{
+  "name": "Credit and collection model",
+  "description": "Credit Collections of the customers",
+  "entities": [
+    {
+      "name": "BICompanyView",
+      "description": "List of the Companies",
+      "attributes": [
+        {
+          "name": "COMPANYNAME",
+          "description": "COMPANYNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "ISVIRTUAL_VALUE",
+          "description": "ISVIRTUAL_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "COMPANY",
+          "description": "COMPANY",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ISVIRTUAL",
+          "description": "ISVIRTUAL",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICompanyView.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICustTable",
+      "description": "Customers information",
+      "attributes": [
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "COMPANY",
+          "description": "COMPANY",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTGROUP",
+          "description": "CUSTGROUP",
+          "dataType": "string"
+        },
+        {
+          "name": "CREDITRATING",
+          "description": "CREDITRATING",
+          "dataType": "string"
+        },
+        {
+          "name": "BLOCKED_VALUE",
+          "description": "BLOCKED_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "GEOGRAPHICLOCATION",
+          "description": "GEOGRAPHICLOCATION",
+          "dataType": "string"
+        },
+        {
+          "name": "COUNTY",
+          "description": "COUNTY",
+          "dataType": "string"
+        },
+        {
+          "name": "STATE",
+          "description": "STATE",
+          "dataType": "string"
+        },
+        {
+          "name": "CITY",
+          "description": "CITY",
+          "dataType": "string"
+        },
+        {
+          "name": "DISTRICTNAME",
+          "description": "DISTRICTNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "ZIPCODE",
+          "description": "ZIPCODE",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ROW_UNIQUEKEY",
+          "description": "ROW_UNIQUEKEY",
+          "dataType": "int64"
+        },
+        {
+          "name": "BLOCKED",
+          "description": "BLOCKED",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICustTable.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIActivitiesAverageClosedTime",
+      "description": "Number of activities completed per AverageClosedTime",
+      "attributes": [
+        {
+          "name": "AVERAGECLOSEDTIME",
+          "description": "AVERAGECLOSEDTIME",
+          "dataType": "double"
+        },
+        {
+          "name": "NUMOFACTIVITIES",
+          "description": "NUMOFACTIVITIES",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "RESPONSIBLEWORKER",
+          "description": "RESPONSIBLEWORKER",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIActivitiesAverageClosedTime.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIActivitiesOpen",
+      "description": "Number of activities open for each customer",
+      "attributes": [
+        {
+          "name": "ACTIVITYNUMBER",
+          "description": "ACTIVITYNUMBER",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "RESPONSIBLEWORKER",
+          "description": "RESPONSIBLEWORKER",
+          "dataType": "string"
+        },
+        {
+          "name": "CATEGORY_VALUE",
+          "description": "CATEGORY_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "PURPOSE",
+          "description": "PURPOSE",
+          "dataType": "string"
+        },
+        {
+          "name": "TYPEID",
+          "description": "TYPEID",
+          "dataType": "string"
+        },
+        {
+          "name": "STARTDATETIME",
+          "description": "STARTDATETIME",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "ENDDATETIME",
+          "description": "ENDDATETIME",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        },
+        {
+          "name": "CATEGORY",
+          "description": "CATEGORY",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIActivitiesOpen.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIAgedBalances",
+      "description": "Balances remain as per their ages",
+      "attributes": [
+        {
+          "name": "AGEDBALANCES",
+          "description": "AGEDBALANCES",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "HEADING",
+          "description": "HEADING",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "AGINGNAME",
+          "description": "AGINGNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIAgedBalances.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIBalancesDue",
+      "description": "Remaining Balances to be paid",
+      "attributes": [
+        {
+          "name": "SYSTEMCURRENCYAMOUNT",
+          "description": "SYSTEMCURRENCYAMOUNT",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "DUEDATE",
+          "description": "DUEDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIBalancesDue.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICaseAverageCloseTime",
+      "description": "Average Time taken to close the Case",
+      "attributes": [
+        {
+          "name": "CASEAVERAGECLOSEDTIME",
+          "description": "CASEAVERAGECLOSEDTIME",
+          "dataType": "double"
+        },
+        {
+          "name": "NUMOFCASES",
+          "description": "NUMOFCASES",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "RESPONSIBLEWORKER",
+          "description": "RESPONSIBLEWORKER",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICaseAverageCloseTime.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICasesOpen",
+      "description": "Total cases which are opened",
+      "attributes": [
+        {
+          "name": "CASEID",
+          "description": "CASEID",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "RESPONSIBLEWORKER",
+          "description": "RESPONSIBLEWORKER",
+          "dataType": "string"
+        },
+        {
+          "name": "DESCRIPTION",
+          "description": "DESCRIPTION",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICasesOpen.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICollectionLetter",
+      "description": "Details of the collection letter",
+      "attributes": [
+        {
+          "name": "COLLECTIONLETTERNUM",
+          "description": "COLLECTIONLETTERNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "PRINTDATE",
+          "description": "PRINTDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "COLLECTIONLETTERDATE",
+          "description": "COLLECTIONLETTERDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "COLLECTIONLETTERCODE_VALUE",
+          "description": "COLLECTIONLETTERCODE_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        },
+        {
+          "name": "COLLECTIONLETTERCODE",
+          "description": "COLLECTIONLETTERCODE",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICollectionLetter.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICollectionLetterAmounts",
+      "description": "Amount Details in the collection letter",
+      "attributes": [
+        {
+          "name": "COLLECTIONLETTERAMOUNTS",
+          "description": "COLLECTIONLETTERAMOUNTS",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "TRANSDATE",
+          "description": "TRANSDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "COLLECTIONLETTERCODE_VALUE",
+          "description": "COLLECTIONLETTERCODE_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "DUEDATE",
+          "description": "DUEDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        },
+        {
+          "name": "COLLECTIONLETTERCODE",
+          "description": "COLLECTIONLETTERCODE",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICollectionLetterAmounts.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICollectionStatus",
+      "description": "Status of the collection",
+      "attributes": [
+        {
+          "name": "COLLECTIONSTATUSAMOUNTS",
+          "description": "COLLECTIONSTATUSAMOUNTS",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "DISPUTESTATUSTRANSLATED",
+          "description": "DISPUTESTATUSTRANSLATED",
+          "dataType": "string"
+        },
+        {
+          "name": "DUEDATE",
+          "description": "DUEDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "TRANSDATE",
+          "description": "TRANSDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICollectionStatus.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICredit",
+      "description": "Total credit of the customer",
+      "attributes": [
+        {
+          "name": "CREDITEXPOSED",
+          "description": "CREDITEXPOSED",
+          "dataType": "double"
+        },
+        {
+          "name": "AMOUNTOVERCREDITLIMIT",
+          "description": "AMOUNTOVERCREDITLIMIT",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "CREDITREMAINING",
+          "description": "CREDITREMAINING",
+          "dataType": "double"
+        },
+        {
+          "name": "SYSTEMCURRENCYCREDITMAX",
+          "description": "SYSTEMCURRENCYCREDITMAX",
+          "dataType": "double"
+        },
+        {
+          "name": "CREDITRATING",
+          "description": "CREDITRATING",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICredit.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BICustOnHold",
+      "description": "Customers on hold",
+      "attributes": [
+        {
+          "name": "BLOCKED_VALUE",
+          "description": "BLOCKED_VALUE",
+          "dataType": "int64"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "BLOCKSTATUS",
+          "description": "BLOCKSTATUS",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BICustOnHold.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIDSO30",
+      "description": "DSO30 Value",
+      "attributes": [
+        {
+          "name": "DSO30",
+          "description": "DSO30",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIDSO30.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIExpectedPayment",
+      "description": "Expected amount of payment",
+      "attributes": [
+        {
+          "name": "EXPECTEDPAYMENT",
+          "description": "EXPECTEDPAYMENT",
+          "dataType": "double"
+        },
+        {
+          "name": "COMPANY",
+          "description": "COMPANY",
+          "dataType": "string"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "EXPECTEDPAYDATE",
+          "description": "EXPECTEDPAYDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "INVOICE",
+          "description": "INVOICE",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIExpectedPayment.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIInterestNotes",
+      "description": "Interest Notes",
+      "attributes": [
+        {
+          "name": "INTERESTNOTE",
+          "description": "INTERESTNOTE",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "FROMDATE",
+          "description": "FROMDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "TODATE",
+          "description": "TODATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIInterestNotes.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BISalesOnHold",
+      "description": "Sales which are on hold",
+      "attributes": [
+        {
+          "name": "SALESID",
+          "description": "SALESID",
+          "dataType": "string"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "CUSTACCOUNT",
+          "description": "CUSTACCOUNT",
+          "dataType": "string"
+        },
+        {
+          "name": "SALESNAME",
+          "description": "SALESNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "MCRREASONCODE",
+          "description": "MCRREASONCODE",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BISalesOnHold.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIWriteOff",
+      "description": "WriteOff for the customer collections",
+      "attributes": [
+        {
+          "name": "WRITEOFFAMOUNT",
+          "description": "WRITEOFFAMOUNT",
+          "dataType": "double"
+        },
+        {
+          "name": "DATAAREAID",
+          "description": "DATAAREAID",
+          "dataType": "string"
+        },
+        {
+          "name": "PARTITION",
+          "description": "PARTITION",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "ACCOUNTNUM",
+          "description": "ACCOUNTNUM",
+          "dataType": "string"
+        },
+        {
+          "name": "TRANSDATE",
+          "description": "TRANSDATE",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "REASON",
+          "description": "REASON",
+          "dataType": "string"
+        },
+        {
+          "name": "CUSTOMERNAME",
+          "description": "CUSTOMERNAME",
+          "dataType": "string"
+        },
+        {
+          "name": "WRITEOFFREASON",
+          "description": "WRITEOFFREASON",
+          "dataType": "string"
+        },
+        {
+          "name": "REASONCOMMENT",
+          "description": "REASONCOMMENT",
+          "dataType": "string"
+        },
+        {
+          "name": "WRITEOFFDIMENSION",
+          "description": "WRITEOFFDIMENSION",
+          "dataType": "string"
+        },
+        {
+          "name": "CustCollectionsBIMeasurements_CustTable_FK",
+          "description": "CustCollectionsBIMeasurements_CustTable_FK",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIWriteOff.csv?test=1"
+        }
+      ]
+    },
+    {
+      "name": "BIDateDimensionvalue",
+      "description": "List of dates and other dimensions",
+      "attributes": [
+        {
+          "name": "DATE_",
+          "description": "DATE_",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "WEEK",
+          "description": "WEEK",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "TENDAYS",
+          "description": "TENDAYS",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "MONTH",
+          "description": "MONTH",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "QUARTER",
+          "description": "QUARTER",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "TRIMESTER",
+          "description": "TRIMESTER",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "HALFYEAR",
+          "description": "HALFYEAR",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "YEAR",
+          "description": "YEAR",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "DAYOFWEEK",
+          "description": "DAYOFWEEK",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFTENDAYS",
+          "description": "DAYOFTENDAYS",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFMONTH",
+          "description": "DAYOFMONTH",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFQUARTER",
+          "description": "DAYOFQUARTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFTRIMESTER",
+          "description": "DAYOFTRIMESTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFHALFYEAR",
+          "description": "DAYOFHALFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "DAYOFYEAR",
+          "description": "DAYOFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "WEEKOFMONTH",
+          "description": "WEEKOFMONTH",
+          "dataType": "int64"
+        },
+        {
+          "name": "WEEKOFQUARTER",
+          "description": "WEEKOFQUARTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "WEEKOFTRIMESTER",
+          "description": "WEEKOFTRIMESTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "WEEKOFHALFYEAR",
+          "description": "WEEKOFHALFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "WEEKOFYEAR",
+          "description": "WEEKOFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "TENDAYSOFMONTH",
+          "description": "TENDAYSOFMONTH",
+          "dataType": "int64"
+        },
+        {
+          "name": "TENDAYSOFQUARTER",
+          "description": "TENDAYSOFQUARTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "TENDAYSOFTRIMESTER",
+          "description": "TENDAYSOFTRIMESTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "TENDAYSOFHALFYEAR",
+          "description": "TENDAYSOFHALFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "TENDAYSOFYEAR",
+          "description": "TENDAYSOFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "MONTHOFQUARTER",
+          "description": "MONTHOFQUARTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "MONTHOFTRIMESTER",
+          "description": "MONTHOFTRIMESTER",
+          "dataType": "int64"
+        },
+        {
+          "name": "MONTHOFHALFYEAR",
+          "description": "MONTHOFHALFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "MONTHOFYEAR",
+          "description": "MONTHOFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "QUARTEROFHALFYEAR",
+          "description": "QUARTEROFHALFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "QUARTEROFYEAR",
+          "description": "QUARTEROFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "TRIMESTEROFYEAR",
+          "description": "TRIMESTEROFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "HALFYEAROFYEAR",
+          "description": "HALFYEAROFYEAR",
+          "dataType": "int64"
+        },
+        {
+          "name": "DATEKEY",
+          "description": "DATEKEY",
+          "dataType": "int64"
+        },
+        {
+          "name": "BIDATEGREGORIAN",
+          "description": "BIDATEGREGORIAN",
+          "dataType": "int64"
+        },
+        {
+          "name": "MONTHGREGORIAN",
+          "description": "MONTHGREGORIAN",
+          "dataType": "int64"
+        },
+        {
+          "name": "QUARTERGREGORIAN",
+          "description": "QUARTERGREGORIAN",
+          "dataType": "int64"
+        },
+        {
+          "name": "YEARGREGORIAN",
+          "description": "YEARGREGORIAN",
+          "dataType": "int64"
+        },
+        {
+          "name": "RECID",
+          "description": "RECID",
+          "dataType": "int64"
+        },
+        {
+          "name": "CALENDARNAME",
+          "description": "CALENDARNAME",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "location": "https://cdsaintegrationbyos.blob.core.windows.net/custcollectionsbimeasurements/BIDateDimensionvalue.csv?test=1"
+        }
+      ]
+    }
+  ]
+}
